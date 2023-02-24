@@ -1,0 +1,92 @@
+
+mysql> create table marks(regno int(10),Name varchar(20),mark int(10));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into marks values(101,"Neha",98);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into marks values(102,"Sudheer",97);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into marks values(103,"Praneetha",96);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into marks values(104,"Tanuja",95);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into marks values(105,"Uma",94);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from marks;
++-------+-----------+------+
+| regno | Name      | mark |
++-------+-----------+------+
+|   101 | Neha      |   98 |
+|   102 | Sudheer   |   97 |
+|   103 | Praneetha |   96 |
+|   104 | Tanuja    |   95 |
+|   105 | Uma       |   94 |
++-------+-----------+------+
+5 rows in set (0.00 sec)
+
+mysql> select @@autocommit;
++--------------+
+| @@autocommit |
++--------------+
+|            1 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> insert into marks values(106,"Hemanth",93);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from marks;
++-------+-----------+------+
+| regno | Name      | mark |
++-------+-----------+------+
+|   101 | Neha      |   98 |
+|   102 | Sudheer   |   97 |
+|   103 | Praneetha |   96 |
+|   104 | Tanuja    |   95 |
+|   105 | Uma       |   94 |
+|   106 | Hemanth   |   93 |
++-------+-----------+------+
+6 rows in set (0.00 sec)
+
+mysql> select @@autocommit;
++--------------+
+| @@autocommit |
++--------------+
+|            1 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> delete from marks where mark=93;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from marks;
++-------+-----------+------+
+| regno | Name      | mark |
++-------+-----------+------+
+|   101 | Neha      |   98 |
+|   102 | Sudheer   |   97 |
+|   103 | Praneetha |   96 |
+|   104 | Tanuja    |   95 |
+|   105 | Uma       |   94 |
++-------+-----------+------+
+5 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select*from marks;
++-------+-----------+------+
+| regno | Name      | mark |
++-------+-----------+------+
+|   101 | Neha      |   98 |
+|   102 | Sudheer   |   97 |
+|   103 | Praneetha |   96 |
+|   104 | Tanuja    |   95 |
+|   105 | Uma       |   94 |
++-------+-----------+------+
+5 rows in set (0.00 sec)
