@@ -1,0 +1,54 @@
+mysql> use sse;
+Database changed
+mysql> select*from mentees;
++-----------+-----------+------------+------------+--------------------+------+---------+
+| regno     | name      | fathername | department | address            | mark | subject |
++-----------+-----------+------------+------------+--------------------+------+---------+
+| 192211268 | Neha      | Ravi kumar | CSE        | lawyer pet, Ongole |   97 | DBMS    |
+| 192043265 | Tanuja    | vishnu     | CSE        | Ongole             |   94 | DBMS    |
+| 192211265 | Praneetha | Nageswar   | IT         | Chirala            |   95 | PDSD    |
++-----------+-----------+------------+------------+--------------------+------+---------+
+3 rows in set (0.00 sec)
+
+mysql> DELIMITER //
+mysql> CREATE PROCEDURE mentee_info()
+    -> BEGIN
+    -> select*from mentees;
+    -> END //
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> CALL mentee info();
+    -> //
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'info()' at line 1
+mysql> CALL mentee_info();
+    -> //
++-----------+-----------+------------+------------+--------------------+------+---------+
+| regno     | name      | fathername | department | address            | mark | subject |
++-----------+-----------+------------+------------+--------------------+------+---------+
+| 192211268 | Neha      | Ravi kumar | CSE        | lawyer pet, Ongole |   97 | DBMS    |
+| 192043265 | Tanuja    | vishnu     | CSE        | Ongole             |   94 | DBMS    |
+| 192211265 | Praneetha | Nageswar   | IT         | Chirala            |   95 | PDSD    |
++-----------+-----------+------------+------------+--------------------+------+---------+
+3 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> CREATE PROCEDURE while_loop()
+    -> BEGIN
+    ->  DECLARE num INT default 1;
+    -> DECLARE res Varchar(50) default '';
+    ->  WHILE num < 78125 DO
+    ->  SET res = CONCAT(res,num,',');
+    -> SET num = num*5;
+    ->  END While;
+    -> SELECT res;
+    -> END //
+Query OK, 0 rows affected (0.01 sec)
+mysql> call while_loop()
+    -> //
++----------------------------+
+| res                        |
++----------------------------+
+| 1,5,25,125,625,3125,15625, |
++----------------------------+
+1 row in set (0.00 sec)
