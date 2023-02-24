@@ -1,0 +1,133 @@
+mysql> use sse;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_sse     |
++-------------------+
+| empdept           |
+| employee1         |
+| faculty1          |
+| mentees           |
+| student9          |
+| studentdepartment |
++-------------------+
+6 rows in set (0.00 sec)
+
+mysql> select*from mentees;
++-----------+-----------+------------+------------+--------------------+
+| regno     | name      | fathername | department | address            |
++-----------+-----------+------------+------------+--------------------+
+| 192211268 | Neha      | Ravi kumar | CSE        | lawyer pet, Ongole |
+| 192043265 | Tanuja    | vishnu     | CSE        | Ongole             |
+| 192211265 | Praneetha | Nageswar   | IT         | Chirala            |
++-----------+-----------+------------+------------+--------------------+
+3 rows in set (0.00 sec)
+
+mysql> select*from mentees where department="CSE";
++-----------+--------+------------+------------+--------------------+
+| regno     | name   | fathername | department | address            |
++-----------+--------+------------+------------+--------------------+
+| 192211268 | Neha   | Ravi kumar | CSE        | lawyer pet, Ongole |
+| 192043265 | Tanuja | vishnu     | CSE        | Ongole             |
++-----------+--------+------------+------------+--------------------+
+2 rows in set (0.00 sec)
+
+mysql> select*from mentees where name="Tanuja";
++-----------+--------+------------+------------+---------+
+| regno     | name   | fathername | department | address |
++-----------+--------+------------+------------+---------+
+| 192043265 | Tanuja | vishnu     | CSE        | Ongole  |
++-----------+--------+------------+------------+---------+
+1 row in set (0.00 sec)
+
+mysql> alter table mentees add mark int(10);
+Query OK, 3 rows affected (0.03 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> desc mentees;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| regno      | int(10)     | YES  |     | NULL    |       |
+| name       | varchar(10) | YES  |     | NULL    |       |
+| fathername | varchar(10) | YES  |     | NULL    |       |
+| department | varchar(10) | YES  |     | NULL    |       |
+| address    | varchar(20) | YES  |     | NULL    |       |
+| mark       | int(10)     | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+6 rows in set (0.02 sec)
+
+mysql> select*from mentees;
++-----------+-----------+------------+------------+--------------------+------+
+| regno     | name      | fathername | department | address            | mark |
++-----------+-----------+------------+------------+--------------------+------+
+| 192211268 | Neha      | Ravi kumar | CSE        | lawyer pet, Ongole | NULL |
+| 192043265 | Tanuja    | vishnu     | CSE        | Ongole             | NULL |
+| 192211265 | Praneetha | Nageswar   | IT         | Chirala            | NULL |
++-----------+-----------+------------+------------+--------------------+------+
+3 rows in set (0.00 sec)
+
+mysql> update mentees set mark=98 where department="CSE";
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> update mentees set mark=95 where department="IT";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set mark=97 where name="Neha";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set mark=94 where name="Tanuja";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from mentees;
++-----------+-----------+------------+------------+--------------------+------+
+| regno     | name      | fathername | department | address            | mark |
++-----------+-----------+------------+------------+--------------------+------+
+| 192211268 | Neha      | Ravi kumar | CSE        | lawyer pet, Ongole |   97 |
+| 192043265 | Tanuja    | vishnu     | CSE        | Ongole             |   94 |
+| 192211265 | Praneetha | Nageswar   | IT         | Chirala            |   95 |
++-----------+-----------+------------+------------+--------------------+------+
+3 rows in set (0.00 sec)
+
+mysql> select*from mentees where name like'N%';
++-----------+------+------------+------------+--------------------+------+
+| regno     | name | fathername | department | address            | mark |
++-----------+------+------------+------------+--------------------+------+
+| 192211268 | Neha | Ravi kumar | CSE        | lawyer pet, Ongole |   97 |
++-----------+------+------------+------------+--------------------+------+
+1 row in set (0.00 sec)
+
+mysql> select*from mentees where name like 'h%';
+Empty set (0.00 sec)
+
+mysql> select*from mentees where department like 'S%';
+Empty set (0.00 sec)
+
+mysql> select*from mentees where department like 'C%';
++-----------+--------+------------+------------+--------------------+------+
+| regno     | name   | fathername | department | address            | mark |
++-----------+--------+------------+------------+--------------------+------+
+| 192211268 | Neha   | Ravi kumar | CSE        | lawyer pet, Ongole |   97 |
+| 192043265 | Tanuja | vishnu     | CSE        | Ongole             |   94 |
++-----------+--------+------------+------------+--------------------+------+
+2 rows in set (0.00 sec)
+
+mysql> select*from mentees where address like 'O%';
++-----------+--------+------------+------------+---------+------+
+| regno     | name   | fathername | department | address | mark |
++-----------+--------+------------+------------+---------+------+
+| 192043265 | Tanuja | vishnu     | CSE        | Ongole  |   94 |
++-----------+--------+------------+------------+---------+------+
+1 row in set (0.00 sec)
+
+mysql> select*from mentees where address like 'O__l%';
++-----------+--------+------------+------------+---------+------+
+| regno     | name   | fathername | department | address | mark |
++-----------+--------+------------+------------+---------+------+
+| 192043265 | Tanuja | vishnu     | CSE        | Ongole  |   94 |
++-----------+--------+------------+------------+---------+------+
+1 row in set (0.00 sec)
