@@ -1,0 +1,60 @@
+mysql> create table mentees(regno int(10),name varchar(10),fathername varchar(10),department varchar(10),address varchar(20));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc mentees;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| regno      | int(10)     | YES  |     | NULL    |       |
+| name       | varchar(10) | YES  |     | NULL    |       |
+| fathername | varchar(10) | YES  |     | NULL    |       |
+| department | varchar(10) | YES  |     | NULL    |       |
+| address    | varchar(20) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+5 rows in set (0.02 sec)
+
+mysql> insert into mentees values(192211268,"Neha","Ravi kumar","CSE","lawyer pet, Ongole");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into mentees values
+    ->
+    -> kr;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'kr' at line 3
+mysql> insert into mentees values(192234218,"Nikitha","Koteswarao","AIDS","guntur");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into mentees values(192043265,"Tanuja","vishnu","CSE","Ongole");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into mentees values(192211265,"Praneetha","Nageswar","IT","Ongole");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from mentees;
++-----------+-----------+------------+------------+--------------------+
+| regno     | name      | fathername | department | address            |
++-----------+-----------+------------+------------+--------------------+
+| 192211268 | Neha      | Ravi kumar | CSE        | lawyer pet, Ongole |
+| 192234218 | Nikitha   | Koteswarao | AIDS       | guntur             |
+| 192043265 | Tanuja    | vishnu     | CSE        | Ongole             |
+| 192211265 | Praneetha | Nageswar   | IT         | Ongole             |
++-----------+-----------+------------+------------+--------------------+
+4 rows in set (0.01 sec)
+
+mysql> select name from mentees;
++-----------+
+| name      |
++-----------+
+| Neha      |
+| Nikitha   |
+| Tanuja    |
+| Praneetha |
++-----------+
+4 rows in set (0.00 sec)
+
+mysql> select*from mentees where name="Neha";
++-----------+------+------------+------------+--------------------+
+| regno     | name | fathername | department | address            |
++-----------+------+------------+------------+--------------------+
+| 192211268 | Neha | Ravi kumar | CSE        | lawyer pet, Ongole |
++-----------+------+------------+------------+--------------------+
+1 row in set (0.01 sec)
