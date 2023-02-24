@@ -1,0 +1,90 @@
+mysql> show tables;
++-------------------+
+| Tables_in_sse     |
++-------------------+
+| empdept           |
+| employee1         |
+| faculty1          |
+| student9          |
+| studentdepartment |
++-------------------+
+5 rows in set (0.00 sec)
+mysql> create table student9(studid int(10),stuname varchar(10),gender varchar(10),studept varchar(10),city varchar(10));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc student9;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| studid  | int(10)     | YES  |     | NULL    |       |
+| stuname | varchar(10) | YES  |     | NULL    |       |
+| gender  | varchar(10) | YES  |     | NULL    |       |
+| studept | varchar(10) | YES  |     | NULL    |       |
+| city    | varchar(10) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+5 rows in set (0.03 sec)
+
+mysql> insert into student9 values(1,"lathika","Female","CSE","Ongole");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student9 values(2,"anjali","Female","IT","Ongole");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student9 values(3,"neshitha","Male","ECE","Badvel");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student9 values(4,"chandra","Female","AIDS","Ongole");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from student9;
++--------+-----------+--------+---------+--------+
+| studid | stuname   | gender | studept | city   |
++--------+-----------+--------+---------+--------+
+|      1 | lathika   | Female | CSE     | Ongole |
+|      2 | anjali    | Female | IT      | Ongole |
+|      3 | neshitha  | Male   | ECE     | Badvel |
+|      4 | chandra   | Female | AIDS    | Ongole |
++--------+-----------+--------+---------+--------+
+4 rows in set (0.01 sec)
+musql> use sse;
+Database changed
+
+mysql> create table studentdepartment;
+ERROR 1113 (42000): A table must have at least 1 column
+mysql> create table studentdepartment(stuid int(10),stuname varchar(10),studept varchar(10));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc studentdepartment;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| stuid   | int(10)     | YES  |     | NULL    |       |
+| stuname | varchar(10) | YES  |     | NULL    |       |
+| studept | varchar(10) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.02 sec)
+mysql>  create table employee1(empid int(10),empname varchar(10),empdept varchar(10),empsalary int(10));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc employee1;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| empid     | int(10)     | YES  |     | NULL    |       |
+| empname   | varchar(10) | YES  |     | NULL    |       |
+| empdept   | varchar(10) | YES  |     | NULL    |       |
+| empsalary | int(10)     | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+mysql> create table empdept(empid int(10),empname varchar(10),empdept varchar(10));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc empdept;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| empid   | int(10)     | YES  |     | NULL    |       |
+| empname | varchar(10) | YES  |     | NULL    |       |
+| empdept | varchar(10) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.02 sec)
