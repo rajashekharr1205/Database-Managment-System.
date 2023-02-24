@@ -1,0 +1,93 @@
+mysql> use sse;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_sse     |
++-------------------+
+| empdept           |
+| employee1         |
+| faculty1          |
+| mentees           |
+| student9          |
+| studentdepartment |
++-------------------+
+6 rows in set (0.00 sec)
+
+mysql> alter table mentees add subject varchar(20);
+Query OK, 3 rows affected (0.03 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> update mentees set subject="DBMS" where department="CSE";
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> update mentees set subject="PDSD" where department="IT";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from mentees;
++-----------+-----------+------------+------------+--------------------+------+---------+
+| regno     | name      | fathername | department | address            | mark | subject |
++-----------+-----------+------------+------------+--------------------+------+---------+
+| 192211268 | Neha      | Ravi kumar | CSE        | lawyer pet, Ongole |   97 | DBMS    |
+| 192043265 | Tanuja    | vishnu     | CSE        | Ongole             |   94 | DBMS    |
+| 192211265 | Praneetha | Nageswar   | IT         | Chirala            |   95 | PDSD    |
++-----------+-----------+------------+------------+--------------------+------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select*from mentees where mark BETWEEN 95 and 99;
++-----------+-----------+------------+------------+--------------------+------+---------+
+| regno     | name      | fathername | department | address            | mark | subject |
++-----------+-----------+------------+------------+--------------------+------+---------+
+| 192211268 | Neha      | Ravi kumar | CSE        | lawyer pet, Ongole |   97 | DBMS    |
+| 192211265 | Praneetha | Nageswar   | IT         | Chirala            |   95 | PDSD    |
++-----------+-----------+------------+------------+--------------------+------+---------+
+2 rows in set (0.01 sec)
+
+mysql> select*from mentees where subject IN('PDSD');
++-----------+-----------+------------+------------+---------+------+---------+
+| regno     | name      | fathername | department | address | mark | subject |
++-----------+-----------+------------+------------+---------+------+---------+
+| 192211265 | Praneetha | Nageswar   | IT         | Chirala |   95 | PDSD    |
++-----------+-----------+------------+------------+---------+------+---------+
+1 row in set (0.00 sec)
+
+mysql> select*from mentees where mark NOT BETWEEN 95 and 99;
++-----------+--------+------------+------------+---------+------+---------+
+| regno     | name   | fathername | department | address | mark | subject |
++-----------+--------+------------+------------+---------+------+---------+
+| 192043265 | Tanuja | vishnu     | CSE        | Ongole  |   94 | DBMS    |
++-----------+--------+------------+------------+---------+------+---------+
+1 row in set (0.00 sec)
+
+mysql> select sum(mark) from mentees where department="CSE";
++-----------+
+| sum(mark) |
++-----------+
+|       191 |
++-----------+
+1 row in set (0.01 sec)
+
+mysql> select avg(mark) as Avreage from mentees;
++---------+
+| Avreage |
++---------+
+| 95.3333 |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select min(mark) as minimum from mentees;
++---------+
+| minimum |
++---------+
+|      94 |
++---------+
+1 row in set (0.01 sec)
+
+mysql> select max(mark) as maximum from mentees;
++---------+
+| maximum |
++---------+
+|      97 |
++---------+
+1 row in set (0.00 sec)
