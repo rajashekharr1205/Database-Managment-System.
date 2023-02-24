@@ -1,0 +1,64 @@
+mysql> use sse;
+Database changed
+mysql> create table faculty(facid int(10),facname varchar(10),facdept varchar(10),salary int(10));
+ERROR 1050 (42S01): Table 'faculty' already exists
+mysql> desc faculty;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| facid   | int(10)     | YES  |     | NULL    |       |
+| facname | varchar(10) | YES  |     | NULL    |       |
+| facdept | int(10)     | YES  |     | NULL    |       |
+| salary  | int(10)     | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+
+mysql> create table faculty1(facid int(10),facname varchar(10),facdept varchar(10),salary int(10));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc faculty;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| facid   | int(10)     | YES  |     | NULL    |       |
+| facname | varchar(10) | YES  |     | NULL    |       |
+| facdept | int(10)     | YES  |     | NULL    |       |
+| salary  | int(10)     | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+
+mysql> desc faculty1;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| facid   | int(10)     | YES  |     | NULL    |       |
+| facname | varchar(10) | YES  |     | NULL    |       |
+| facdept | varchar(10) | YES  |     | NULL    |       |
+| salary  | int(10)     | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+
+mysql> insert into faculty1(1,"Neha","CSE",12000);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1,"Neha","CSE",12000)' at line 1
+mysql> insert into faculty1 values(1,"Neha","CSE",12000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into faculty1 values(2,"Nikitha","CSE",10000);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into faculty1 values(3,"Tanuja","IT",11000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into faculty1 values(4,"Praneetha","AIDS",13000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from faculty1;
++-------+-----------+---------+--------+
+| facid | facname   | facdept | salary |
++-------+-----------+---------+--------+
+|     1 | neha      | CSE     |  12000 |
+|     2 | nikitha   | CSE     |  10000 |
+|     3 | thanuja   | IT      |  11000 |
+|     4 | praneetha | AIDS    |  13000 |
++-------+-----------+---------+--------+
+4 rows in set (0.00 sec)
