@@ -1,0 +1,59 @@
+mysql> use sse;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_sse     |
++-------------------+
+| empdept           |
+| employee1         |
+| faculty1          |
+| mentees           |
+| student9          |
+| studentdepartment |
++-------------------+
+6 rows in set (0.00 sec)
+
+mysql> select*from mentees;
++-----------+-----------+------------+------------+--------------------+------+---------+
+| regno     | name      | fathername | department | address            | mark | subject |
++-----------+-----------+------------+------------+--------------------+------+---------+
+| 192211268 | Neha      | Ravi kumar | CSE        | lawyer pet, Ongole |   97 | DBMS    |
+| 192043265 | Tanuja    | vishnu     | CSE        | Ongole             |   94 | DBMS    |
+| 192211265 | Praneetha | Nageswar   | IT         | Chirala            |   95 | PDSD    |
++-----------+-----------+------------+------------+--------------------+------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select regno,name from mentees where name IN(select name from mentees where department="CSE");
++-----------+--------+
+| regno     | name   |
++-----------+--------+
+| 192211268 | Neha   |
+| 192043265 | Tanuja |
++-----------+--------+
+2 rows in set (0.01 sec)
+
+mysql> create table mentees1(Id int(10),Name varchar(20));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into mentees1(Id,Name)
+    -> select regno,name
+    -> from mentees where department="CSE";
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select*from mentees1;
++-----------+--------+
+| Id        | Name   |
++-----------+--------+
+| 192211268 | Neha   |
+| 192043265 | Tanuja |
++-----------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select regno,(select Name from mentees1 where ID=192211268)as name,department,address,fathername,mark,subject from mentees where regno=192211268;
++-----------+------+------------+--------------------+------------+------+---------+
+| regno     | name | department | address            | fathername | mark | subject |
++-----------+------+------------+--------------------+------------+------+---------+
+| 192211268 | Neha | CSE        | lawyer pet, Ongole | Ravi kumar |   97 | DBMS    |
++-----------+------+------------+--------------------+------------+------+---------+
+1 row in set (0.00 sec)
