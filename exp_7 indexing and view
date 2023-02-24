@@ -1,0 +1,93 @@
+mysql> use sse;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_sse     |
++-------------------+
+| empdept           |
+| employee1         |
+| faculty1          |
+| mdept             |
+| mentees           |
+| mentees1          |
+| student9          |
+| studentdepartment |
++-------------------+
+8 rows in set (0.00 sec)
+
+mysql> select*from mentees;
++-----------+-----------+------------+------------+--------------------+------+---------+
+| regno     | name      | fathername | department | address            | mark | subject |
++-----------+-----------+------------+------------+--------------------+------+---------+
+| 192211268 | Neha      | Ravi kumar | CSE        | lawyer pet, Ongole |   97 | DBMS    |
+| 192043265 | Tanuja    | vishnu     | CSE        | Ongole             |   94 | DBMS    |
+| 192211265 | Praneetha | Nageswar   | IT         | Chirala            |   95 | PDSD    |
++-----------+-----------+------------+------------+--------------------+------+---------+
+3 rows in set (0.00 sec)
+
+mysql> create view mark_view as select subject,mark from mentees;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> select*from mark_view;
++---------+------+
+| subject | mark |
++---------+------+
+| DBMS    |   97 |
+| DBMS    |   94 |
+| PDSD    |   95 |
++---------+------+
+3 rows in set (0.01 sec)
+
+mysql> create index subject on mentees(subject);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show index from mentees;
++---------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| Table   | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
++---------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| mentees |          1 | subject  |            1 | subject     | A         |           3 |     NULL | NULL   | YES  | BTREE      |         |               |
++---------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+1 row in set (0.01 sec)
+
+mysql> create table person(pid int NOT NULL AUTO_INCREMENT,Name varchar(20),Age int(3),PRIMARY KEY(pid));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc per;
+ERROR 1146 (42S02): Table 'sse.per' doesn't exist
+mysql> desc person;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| pid   | int(11)     | NO   | PRI | NULL    | auto_increment |
+| Name  | varchar(20) | YES  |     | NULL    |                |
+| Age   | int(3)      | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+3 rows in set (0.02 sec)
+
+mysql> alter table person AUTO_INCREMENT=100;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into person(Name,Age) values ("Neha",18);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from person;
++-----+------+------+
+| pid | Name | Age  |
++-----+------+------+
+| 100 | Neha |   18 |
++-----+------+------+
+1 row in set (0.00 sec)
+
+mysql> insert into person(Name,Age) values ("Tanuja",19);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from person;
++-----+--------+------+
+| pid | Name   | Age  |
++-----+--------+------+
+| 100 | Neha   |   18 |
+| 101 | Tanuja |   19 |
++-----+--------+------+
+2 rows in set (0.00 sec)
